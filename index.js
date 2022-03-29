@@ -121,7 +121,7 @@ const setNewMemberApi = (member, newMember) => {
       if(newMember['fatherName'].toLowerCase() == "yves")
         reject("Yves is not an allowed dad in 2022");
       else {
-        member = {...member, newMember};
+        member.push(newMember);
         resolve(member);
       }
     }, 1000);
