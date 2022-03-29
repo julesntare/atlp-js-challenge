@@ -108,7 +108,34 @@ setStudentAgeApi = (student, age) => {
 }
 
 
-let student = { name: "denis" }
-   setStudentAgeApi(student, 0)
-   .then(response=> console.log(response))
-   .catch(err => console.error(err))
+// let student = { name: "denis" }
+//    setStudentAgeApi(student, 0)
+//    .then(response=> console.log(response))
+//    .catch(err => console.error(err))
+
+
+// my api
+const setNewMemberApi = (member, newMember) => {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      if(newMember['fatherName'].toLowerCase() == "yves")
+        reject("Yves is not an allowed dad in 2022");
+      else {
+        member = {...member, newMember};
+        resolve(member);
+      }
+    }, 1000);
+  });
+}
+
+setNewMemberApi([{
+  "fatherName": "John",
+  "MotherName": "Jane",
+  "childrenNumber": 4
+}], {
+  "fatherName": "Yves",
+  "MotherName": "Patricia",
+  "childrenNumber": 4
+}).then(response => console.log(response))
+  .catch(err=> console.error(err));
+
