@@ -115,14 +115,20 @@ setStudentAgeApi = (student, age) => {
 
 
 // my api
-const setNewMemberApi = (member, newMember) => {
+const setNewMemberApi = (members, newMember) => {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
       if(newMember['fatherName'].toLowerCase() == "yves")
         reject("Yves is not an allowed dad in 2022");
       else {
-        member.push(newMember);
-        resolve(member);
+        let total = 0, average;
+        members.push(newMember);
+        for(let member of members) {
+          total += member.childrenNumber;
+        }
+        average = total/members.length;
+        members.push({"avgChildPerFamily": average});
+        resolve(members);
       }
     }, 1000);
   });
@@ -133,9 +139,8 @@ setNewMemberApi([{
   "MotherName": "Jane",
   "childrenNumber": 4
 }], {
-  "fatherName": "Yves",
+  "fatherName": "Sam",
   "MotherName": "Patricia",
-  "childrenNumber": 4
+  "childrenNumber": 7
 }).then(response => console.log(response))
   .catch(err=> console.error(err));
-
