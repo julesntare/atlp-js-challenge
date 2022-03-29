@@ -82,3 +82,33 @@ function arrayToObject(arr) {
 //                 "Patrick wyne, 100",
 //                 "Patrick wyne, 40"]));
 
+
+// async tasks
+// let setStudentAgeApi = (student, age) => {  //async code below
+//   console.log("1. Starting ..")
+//   setTimeout(() => { student.age = age; console.log("2. Api Processing")}, 0);
+//   console.log("3. Done ..")
+ 
+// }
+
+// promise
+setStudentAgeApi = (student, age) => {
+ 
+   return new Promise(function (resolve, reject) {
+       setTimeout(() => {
+           student.age = age;
+           if(age < 0)
+               reject ("Bad Age")
+	    else
+           	  resolve(student)
+       },
+           500);
+ 
+   });
+}
+
+
+let student = { name: "denis" }
+   setStudentAgeApi(student, 0)
+   .then(response=> console.log(response))
+   .catch(err => console.error(err))
